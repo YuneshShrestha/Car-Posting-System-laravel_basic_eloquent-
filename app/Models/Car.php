@@ -17,4 +17,10 @@ class Car extends Model
 
     // You can reset your timestamps this way
     // protected $timestamps = true;
+
+    // hiding attributes
+    protected $hidden = ["updated_at"];
+
+    // whitelist attributes
+    protected $visible = ["name", "id", "description","founded"];
 }
