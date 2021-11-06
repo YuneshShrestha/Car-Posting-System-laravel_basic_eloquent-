@@ -52,7 +52,8 @@ class PageController extends Controller
      */
     public function show($id)
     {
-        //
+        $cars = Car::find($id);
+        return view('car.show',compact('cars'));
     }
 
     /**

@@ -19,8 +19,12 @@ class Car extends Model
     // protected $timestamps = true;
 
     // hiding attributes
-    protected $hidden = ["updated_at"];
+    // protected $hidden = ["updated_at"];
 
     // whitelist attributes
-    protected $visible = ["name", "id", "description","founded"];
+    // protected $visible = ["name", "id", "description","founded"];
+
+    public function carmodels(){
+        return $this->hasMany(CarModel::class);
+    }
 }

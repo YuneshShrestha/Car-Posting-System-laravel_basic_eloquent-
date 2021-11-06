@@ -5,7 +5,7 @@
     @foreach ($cars as $item)
     <div>
         <div class="d-flex justify-content-between pt-5">
-            <h3>{{ $item->name }}</h3>
+            <a href="car/{{ $item->id }}" class="h3 text-dark">{{ $item->name }}</a>
             <div>
                
                 <form action="/car/{{ $item->id }}" method="POST">

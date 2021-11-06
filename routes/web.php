@@ -16,14 +16,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    $cars = Car::all()->toJson();
-    $cars = json_decode($cars);
+    // $cars = Car::all()->toJson();
+    // $cars = json_decode($cars);
 
-    var_dump($cars);
+    // var_dump($cars);
 
     // Counting data
     // print_r($cars->count());
 
+    $cars = Car::all();
     return view('car.index',compact('cars'));
 });
 Route::resource('car', PageController::class);
