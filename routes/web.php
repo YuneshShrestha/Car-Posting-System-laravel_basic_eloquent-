@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PageController;
+use App\Models\Car;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -11,10 +12,12 @@ use Illuminate\Support\Facades\Route;
 | Here is where you can register web routes for your application. These
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
-|
+|gg
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $cars = Car::all();
+    // print_r($cars->count());
+    return view('car.index',compact('cars'));
 });
 Route::resource('car', PageController::class);

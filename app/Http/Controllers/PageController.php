@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Car;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -13,7 +14,8 @@ class PageController extends Controller
      */
     public function index()
     {
-        //
+        
+        return view('car.index');
     }
 
     /**
@@ -23,7 +25,7 @@ class PageController extends Controller
      */
     public function create()
     {
-        //
+        return view('car.create');
     }
 
     /**
@@ -34,7 +36,12 @@ class PageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $car = new Car();
+        $car->name = $request->name;
+        $car->founded = $request->founded;
+        $car->description = $request->description;
+        $car->save();
+        return redirect('/');
     }
 
     /**
@@ -56,7 +63,8 @@ class PageController extends Controller
      */
     public function edit($id)
     {
-        //
+        $car = Car::find($id);
+        return view('car.edit', compact('car'));
     }
 
     /**
@@ -68,7 +76,12 @@ class PageController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $car = Car::find($id);
+        $car->name = $request->name;
+        $car->founded = $request->founded;
+        $car->description = $request->description;
+        $car->save();
+        return redirect('/');
     }
 
     /**
@@ -79,6 +92,8 @@ class PageController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $car = Car::find($id);
+        $car->delete();
+        return redirect('/');
     }
 }

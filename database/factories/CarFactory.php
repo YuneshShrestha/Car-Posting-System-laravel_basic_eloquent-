@@ -22,7 +22,6 @@ class CarFactory extends Factory
             'description' => $this->faker->paragraph(),
             'created_at' => now(),
             'updated_at' => now(),
-
         ];
     }
 }
