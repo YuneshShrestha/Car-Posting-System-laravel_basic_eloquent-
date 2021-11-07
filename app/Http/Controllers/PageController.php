@@ -58,7 +58,6 @@ class PageController extends Controller
         // $hq = HeadQuater::where('car_id','=',$id)->get();
         // var_dump($hq);
         $cars = Car::find($id);
-
         return view('car.show',compact('cars'));
     }
 

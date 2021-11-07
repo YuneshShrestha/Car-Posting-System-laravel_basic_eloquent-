@@ -30,4 +30,12 @@ class Car extends Model
     public function headquater(){
         return $this->hasOne(HeadQuater::class);
     }
+    public function engines(){
+        return $this->hasManyThrough(
+            Engine::class, 
+            CarModel::class,
+            'car_id', //Foreign key on CarModel
+            'model_id', //Foreign key on Engine
+        );
+    }
 }

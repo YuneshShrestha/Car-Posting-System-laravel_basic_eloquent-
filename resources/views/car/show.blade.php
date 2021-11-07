@@ -8,14 +8,26 @@
         <p>
             {{ $cars->description }}
         </p>
-        <ul style="list-style: none;">
-            Models:
-                @forelse ($cars->carmodels as $item)
-                    <li style="padding-right: 2px;">{{ $item['model_name'] }} </li>
-                @empty
-                    <p>List is empty</p>
-                @endforelse
-        </ul>
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th>Model</th>
+                <th>Engines</th>
+            </tr>
+            @forelse ($cars->carmodels as $model)
+                <tr>
+                    <td>{{ $model->model_name }}</td>
+                    <td>
+                        @foreach ($cars->engines as $engine)
+                            @if ($model->id == $engine->model_id)
+                                {{ $engine->engine_name  }} <br> 
+                            @endif
+                        @endforeach
+                    </td>
+                </tr>
+            @empty
+                
+            @endforelse
+        </table>
        
        </div>
        
