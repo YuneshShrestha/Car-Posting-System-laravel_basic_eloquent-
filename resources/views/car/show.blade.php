@@ -12,6 +12,7 @@
             <tr>
                 <th>Model</th>
                 <th>Engines</th>
+                <th>Production Date</th>
             </tr>
             @forelse ($cars->carmodels as $model)
                 <tr>
@@ -23,9 +24,23 @@
                             @endif
                         @endforeach
                     </td>
+                    <td>
+                        @forelse ($cars->production_date as $date)
+                            @if ($date->model_id == $model->id)
+                             {{ $date->production_date }}
+                             @endif
+                           @empty
+                                N/A
+                        @endforelse
+                       
+                      
+                       
+                    </td>
                 </tr>
             @empty
-                
+                <tr>
+                    <td colspan="3" class="text-center">No Data</td>
+                </tr>
             @endforelse
         </table>
        

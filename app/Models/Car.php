@@ -38,4 +38,13 @@ class Car extends Model
             'model_id', //Foreign key on Engine
         );
     }
+    public function production_date(){
+        // Here hasOneThrough has not worked so used has many through
+        return $this->hasManyThrough(
+            ProductionDate::class,
+            CarModel::class,
+            'car_id',
+            'model_id'
+        );
+    }
 }
