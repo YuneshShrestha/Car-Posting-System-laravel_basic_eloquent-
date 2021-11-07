@@ -27,4 +27,7 @@ class Car extends Model
     public function carmodels(){
         return $this->hasMany(CarModel::class);
     }
+    public function headquater(){
+        return $this->hasOne(HeadQuater::class);
+    }
 }

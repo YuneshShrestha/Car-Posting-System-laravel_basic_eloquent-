@@ -4,10 +4,11 @@
        <div>
         <h3>{{ $cars->name }}</h3>
         <address>{{ $cars->founded }}</address>
+        <p>HeadQauter: {{ $cars->headquater->headquater ?? 'N/A' }}, {{ $cars->headquater->country ?? 'N/A' }}</p>
         <p>
             {{ $cars->description }}
         </p>
-        <ul style="list-style: none">
+        <ul style="list-style: none;">
             Models:
                 @forelse ($cars->carmodels as $item)
                     <li style="padding-right: 2px;">{{ $item['model_name'] }} </li>
