@@ -1,6 +1,7 @@
 @extends('templates.app')
 @section('content')
-    {{-- {{ $cars->name  }} --}}
+    <div>
+            {{-- {{ $cars->name  }} --}}
     <a class="btn btn-primary w-100 my-5" href="/car/create">Add</a>
     @foreach ($cars as $item)
     <div>
@@ -22,6 +23,14 @@
           {{ $item->description }}
         </p>
         <hr>
+        
     </div>
     @endforeach
+   <span> {{ $cars->links() }}</span>
+   <style>
+       .w-5{
+           width: 25px;
+       }
+   </style>
+    </div>
 @endsection

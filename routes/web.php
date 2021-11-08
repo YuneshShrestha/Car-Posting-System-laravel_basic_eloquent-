@@ -24,7 +24,7 @@ Route::get('/', function () {
     // Counting data
     // print_r($cars->count());
 
-    $cars = Car::all();
+    $cars = Car::paginate(2);
     return view('car.index',compact('cars'));
 });
 Route::resource('car', PageController::class);
