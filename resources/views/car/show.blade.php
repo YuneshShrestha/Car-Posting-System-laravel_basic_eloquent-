@@ -2,6 +2,7 @@
 @section('content')
     <div class="data p-5 d-flex justify-content-center align-items-center w-100 h-100">
        <div>
+ 
         <h3>{{ $cars->name }}</h3>
         <address>{{ $cars->founded }}</address>
         <p>HeadQauter: {{ $cars->headquater->headquater ?? 'N/A' }}, {{ $cars->headquater->country ?? 'N/A' }}</p>
@@ -43,7 +44,16 @@
                 </tr>
             @endforelse
         </table>
-       
+       <p>
+           Product Types: <br>
+           @forelse ($cars->products as $product)
+               {{ $product->name }} <br>
+           @empty
+               <p>
+                   No car product description
+               </p>
+           @endforelse
+       </p>
        </div>
        
     </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Car;
 use App\Models\HeadQuater;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -57,6 +58,9 @@ class PageController extends Controller
         // Trying to access all data from headquaters
         // $hq = HeadQuater::where('car_id','=',$id)->get();
         // var_dump($hq);
+
+        // $products = Product::find($id);
+        // print_r($products);
         $cars = Car::find($id);
         return view('car.show',compact('cars'));
     }
