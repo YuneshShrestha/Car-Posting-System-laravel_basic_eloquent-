@@ -4,21 +4,21 @@
         @csrf
         <div class="form-group">
             <label for="name">Name</label>
-            <input id="name" class="form-control" type="text" name="name">
+            <input id="name" class="form-control" type="text" name="name" value="{{ old('name') }}">
         </div>
         @error('name')
             <p class="text-danger">{{ $message }}</p>
         @enderror
         <div class="form-group">
             <label for="founded">Founded</label>
-            <input id="founded" class="form-control" type="text" name="founded">
+            <input id="founded" class="form-control" type="text" name="founded" value="{{ old('founded') }}">
         </div>                     
         @error('founded')
             <p class="text-danger">{{ $message }}</p>
         @enderror
         <div class="form-group">
             <label for="description">Description</label>
-            <textarea cols="30" rows="10" class="form-control" type="text" name="description"></textarea>
+            <textarea cols="30" rows="10" class="form-control" type="text" name="description">{{ old('description') }}</textarea>
         </div>
         @error('description')
          <p class="text-danger">{{ $message }}</p>

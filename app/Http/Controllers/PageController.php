@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateValidationRequest;
 use App\Models\Car;
 use App\Models\HeadQuater;
 use App\Models\Product;
@@ -37,8 +38,11 @@ class PageController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateValidationRequest $request)
     {
+        // Code to create request
+        // php .\artisan make:request CreateValidationRequest
+
         // Print Everything in request
         // $test=$request->all();
 
@@ -69,14 +73,7 @@ class PageController extends Controller
         // Show Users IP 
         // dd($request->ip());
 
-        $request->validate([
-            // Command used to create uppercase rule
-            //  php .\artisan make:rule UpperCase
-            'name'=>new UpperCase,
-            // 'name'=>'bail|required|unique:cars',
-            'founded'=>'bail|required|integer|min:0|max:2022',
-            'description'=>'required'
-        ]);
+        $request->validated();
         $car = new Car();
         $car->name = $request->name;
         $car->founded = $request->founded;
@@ -125,6 +122,11 @@ class PageController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'name'=>'bail|required',
+            'founded'=>'bail|required|integer|min:0|max:2022',
+            'description'=>'required'
+        ]);
         $car = Car::find($id);
         $car->name = $request->name;
         $car->founded = $request->founded;
