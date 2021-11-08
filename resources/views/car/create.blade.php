@@ -1,7 +1,14 @@
 @extends('templates.app')
 @section('content')
-    <form action="/car" method="POST">
+    <form action="/car" method="POST" enctype="multipart/form-data">
         @csrf
+        <div class="form-group">
+            <label for="image">Image</label>
+            <input id="image" class="form-control" type="file" name="image">
+        </div>
+        @error('image')
+            <p class="text-danger">{{ $message }}</p>
+        @enderror
         <div class="form-group">
             <label for="name">Name</label>
             <input id="name" class="form-control" type="text" name="name" value="{{ old('name') }}">

@@ -38,7 +38,7 @@ class PageController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateValidationRequest $request)
+    public function store(Request $request)
     {
         // Code to create request
         // php .\artisan make:request CreateValidationRequest
@@ -73,11 +73,24 @@ class PageController extends Controller
         // Show Users IP 
         // dd($request->ip());
 
-        $request->validated();
+        $request->validate([
+            // Max will be KB
+            'image'=>'required|mimes:jpeg,jpg,png|max:5048',
+            'name'=>'bail|required',
+            'founded'=>'bail|required|integer|min:0|max:2022',
+            'description'=>'required'
+        ]);
         $car = new Car();
         $car->name = $request->name;
         $car->founded = $request->founded;
         $car->description = $request->description;
+        if($request->hasFile('image'))
+        {
+            $temp = $request->image;
+            $filename = time() . $temp->getClientOriginalName();
+            $temp->move('images/',$filename);
+            $car->image = 'images/'.$filename;
+        }
         $car->save();
         return redirect('/');
     }
@@ -122,11 +135,6 @@ class PageController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'name'=>'bail|required',
-            'founded'=>'bail|required|integer|min:0|max:2022',
-            'description'=>'required'
-        ]);
         $car = Car::find($id);
         $car->name = $request->name;
         $car->founded = $request->founded;

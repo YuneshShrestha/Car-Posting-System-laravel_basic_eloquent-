@@ -2,9 +2,16 @@
 @section('content')
     <div class="data p-5 d-flex justify-content-center align-items-center w-100 h-100">
        <div>
- 
         <h3>{{ $cars->name }}</h3>
         <address>{{ $cars->founded }}</address>
+        {{-- <img src="{{ asset($cars->image) ?? asset('images/default.jpg') }}" alt="" class="img-thumbnail"> --}}
+        {{-- @if (asset($cars->image) != '')
+            <p>{{ $cars->image }}</p>
+        @else
+            <p>have</p>
+        @endif --}}
+       
+        <img src="{{ (file_exists($cars->image)) ? asset($cars->image) : asset('images/default.jpg'); }}" alt="" class="img-thumbnail">
         <p>HeadQauter: {{ $cars->headquater->headquater ?? 'N/A' }}, {{ $cars->headquater->country ?? 'N/A' }}</p>
         <p>
             {{ $cars->description }}
