@@ -65,8 +65,14 @@ class PageController extends Controller
         // Prints complete url
         // dd($request->url());
 
-        // Show Users IP
-        dd($request->ip());
+        // Show Users IP 
+        // dd($request->ip());
+
+        $request->validate([
+            'name'=>'required|unique:cars',
+            'founded'=>'required|integer|min:0|max:2022',
+            'description'=>'required'
+        ]);
         $car = new Car();
         $car->name = $request->name;
         $car->founded = $request->founded;
