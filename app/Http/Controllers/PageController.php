@@ -38,6 +38,35 @@ class PageController extends Controller
      */
     public function store(Request $request)
     {
+        // Print Everything in request
+        // $test=$request->all();
+
+        // Print Everything except _token and name
+        // 1.String
+        // $test=$request->only('_token'); 
+        // 2.Array
+        // $test=$request->except(['_token','name']);
+
+        // Inverse of except
+        // $test=$request->only(['_token','name']);
+
+        // Has() method
+        // $test = $request->has('names');
+
+        // Current Path
+        // 1. dd($request->path());
+        // 2. if($request->is('car')){
+        //     dd('Yes the request is cars');
+        // }
+
+        // Current method
+        // dd($request->isMethod('post'));
+
+        // Prints complete url
+        // dd($request->url());
+
+        // Show Users IP
+        dd($request->ip());
         $car = new Car();
         $car->name = $request->name;
         $car->founded = $request->founded;
