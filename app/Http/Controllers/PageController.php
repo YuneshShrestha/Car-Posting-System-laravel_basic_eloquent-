@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Car;
 use App\Models\HeadQuater;
 use App\Models\Product;
+use App\Rules\UpperCase;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -69,8 +70,11 @@ class PageController extends Controller
         // dd($request->ip());
 
         $request->validate([
-            'name'=>'required|unique:cars',
-            'founded'=>'required|integer|min:0|max:2022',
+            // Command used to create uppercase rule
+            //  php .\artisan make:rule UpperCase
+            'name'=>new UpperCase,
+            // 'name'=>'bail|required|unique:cars',
+            'founded'=>'bail|required|integer|min:0|max:2022',
             'description'=>'required'
         ]);
         $car = new Car();

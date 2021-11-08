@@ -12,7 +12,7 @@
         <div class="form-group">
             <label for="founded">Founded</label>
             <input id="founded" class="form-control" type="text" name="founded">
-        </div>
+        </div>                     
         @error('founded')
             <p class="text-danger">{{ $message }}</p>
         @enderror
