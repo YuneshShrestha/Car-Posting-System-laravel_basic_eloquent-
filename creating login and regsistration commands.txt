@@ -1,0 +1,11 @@
+For login commands
+
+1. For ui package installation
+   
+   composer require laravel/ui
+
+2. php artisan ui bootstrap --auth
+
+3. npm install ; npm run dev
+
+	For mac instead of ; use &&

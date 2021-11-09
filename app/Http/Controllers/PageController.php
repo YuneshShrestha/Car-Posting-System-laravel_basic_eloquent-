@@ -8,6 +8,7 @@ use App\Models\HeadQuater;
 use App\Models\Product;
 use App\Rules\UpperCase;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PageController extends Controller
 {
@@ -16,6 +17,12 @@ class PageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    //  To allow user to access only certain pages without login (Authorization)
+    public function __construct()
+    {
+     $this->middleware('auth',['except' => ['index','show']]);   
+    }
     public function index()
     {
         
@@ -91,6 +98,7 @@ class PageController extends Controller
             $temp->move('images/',$filename);
             $car->image = 'images/'.$filename;
         }
+        $car->user_id= auth()->user()->id;
         $car->save();
         return redirect('/');
     }
